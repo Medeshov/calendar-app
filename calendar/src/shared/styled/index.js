@@ -1,24 +1,59 @@
 import styled from "styled-components";
 
-export const StyledButton = styled.button`
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  margin: 0 1em;
-  padding: 0.25em 1em;
+export const Container = styled.div`
+  width: 1000;
 `;
 
+export const StyledButton = styled.button`
+  font-family: Ubuntu;
+  border-radius: 1px;
+  width: 20px;
+  height: 20px;
+  border-style: none;
+  font-weight: normal;
+  background: white;
+  color: #227947;
+  margin: 1px;
+  box-sizing: content-box;
+  padding: 0.1em 0.1em;
+  &:hover {
+    cursor: pointer;
+  }
+  &:active {
+    background: #77b97e;
+    color: white;
+    border-style: none;
+  }
+`;
+export const WeekDayStyle = styled.button`
+  font-family: Ubuntu;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  border-radius: 1px;
+  width: 20px;
+  height: 20px;
+  border-style: none;
+  font-weight: normal;
+  font-size: 14px;
+  background: white;
+  color: #227947;
+  margin: 1px;
+`;
 export const StyledMonthBlock = styled.div`
-  width: 30vw;
-  height: 35vw;
+  border-radius: 9px;
+  width: 184px;
+  height: 196px;
   padding: 10px;
-  border: 2px solid black;
+  border: 1px solid #92c29d;
+  background: #ebf5ec;
+  margin: 10px 0;
 `;
 
 export const StyledCalendarWrapper = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 `;
