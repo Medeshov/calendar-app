@@ -10,7 +10,7 @@ import {
   WeekDayStyle,
 } from "./shared/styled";
 
-const DayButton = ({ dayDate, onDayClick }) => {
+const DayButton = ({ dayDate, onDayClick, selected }) => {
   return dayDate ? (
     <StyledButton
       onClick={() => {
@@ -18,6 +18,7 @@ const DayButton = ({ dayDate, onDayClick }) => {
         onDayClick(dayDate);
         console.log(`Это дата –  ${dayDate}`);
       }}
+      className={selected ? "selected" : ""}
     >
       {` ${dayDate.getDate()}`}
     </StyledButton>
@@ -26,7 +27,7 @@ const DayButton = ({ dayDate, onDayClick }) => {
   );
 };
 
-const MonthBlock = ({ monthName, monthDays, onDayClick }) => {
+const MonthBlock = ({ monthName, monthDays, chosenDate, onDayClick }) => {
   return (
     <div>
       <StyledMonthBlock>
@@ -83,7 +84,11 @@ const MonthBlock = ({ monthName, monthDays, onDayClick }) => {
             {monthDays.map((weekDays) => (
               <tr>
                 {weekDays.map((day) => (
-                  <DayButton dayDate={day} onDayClick={onDayClick} />
+                  <DayButton
+                    dayDate={day}
+                    onDayClick={onDayClick}
+                    selected={day?.getTime() === chosenDate?.getTime()}
+                  />
                 ))}
               </tr>
             ))}
@@ -116,6 +121,7 @@ class App extends React.Component {
         <MonthBlock
           monthName={month.monthName}
           monthDays={month.monthDays}
+          chosenDate={this.state.chosenDate}
           onDayClick={this.setDate}
         />
       );

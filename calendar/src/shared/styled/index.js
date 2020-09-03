@@ -24,6 +24,10 @@ export const StyledButton = styled.button`
     color: white;
     border-style: none;
   }
+  &.selected {
+    background: green;
+    color: white;
+  }
 `;
 export const WeekDayStyle = styled.button`
   font-family: Ubuntu;
@@ -43,7 +47,7 @@ export const WeekDayStyle = styled.button`
 export const StyledMonthBlock = styled.div`
   border-radius: 9px;
   width: 184px;
-  height: 196px;
+  height: 240px;
   padding: 10px;
   border: 1px solid #92c29d;
   background: #ebf5ec;
