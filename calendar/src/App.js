@@ -6,8 +6,15 @@ import { DAYS, getMonthDaysForYear } from "./shared/utils";
 import {
   StyledButton,
   StyledMonthBlock,
+  StyledMonthName,
   StyledCalendarWrapper,
   WeekDayStyle,
+  WeekendDayStyle,
+  TitleStyle,
+  TestTextStyle,
+  StyledLine,
+  SubmitButton,
+  StyledSubmitItems,
 } from "./shared/styled";
 
 const DayButton = ({ dayDate, onDayClick, selected }) => {
@@ -23,7 +30,9 @@ const DayButton = ({ dayDate, onDayClick, selected }) => {
       {` ${dayDate.getDate()}`}
     </StyledButton>
   ) : (
-    <StyledButton style={{ visibility: "hidden" }} />
+    <StyledButton
+      style={{ visibility: "hidden", width: "20px", height: "10px" }}
+    />
   );
 };
 
@@ -31,52 +40,19 @@ const MonthBlock = ({ monthName, monthDays, chosenDate, onDayClick }) => {
   return (
     <div>
       <StyledMonthBlock>
-        <h1
-          style={{
-            margin: 0,
-            fontSize: "18px",
-            color: "#1d6739",
-            fontWeight: "normal",
-            fontFamily: "Ubuntu",
-            margin: 0,
-          }}
-        >
-          {monthName}
-        </h1>
-        <div
-          style={{
-            width: "125px",
-            height: "1px",
-            background: "black",
-            margin: "15px 30px 10px 30px",
-          }}
-        ></div>
-
-        <table
-          style={{
-            marginLeft: "5px",
-            tableLayout: "fixed",
-          }}
-        >
+        <StyledMonthName>{monthName}</StyledMonthName>
+        <StyledLine />
+        <table style={{ paddingLeft: "13px" }}>
           <thead>
             <tr>
-              <th>
+              <th style={{ padding: "0" }}>
                 <WeekDayStyle>{DAYS[1]}</WeekDayStyle>
                 <WeekDayStyle>{DAYS[2]}</WeekDayStyle>
                 <WeekDayStyle>{DAYS[3]}</WeekDayStyle>
                 <WeekDayStyle>{DAYS[4]}</WeekDayStyle>
                 <WeekDayStyle>{DAYS[5]}</WeekDayStyle>
-                <WeekDayStyle
-                  style={{
-                    background: "#e2907a",
-                    color: "white",
-                  }}
-                >
-                  {DAYS[6]}
-                </WeekDayStyle>
-                <WeekDayStyle style={{ background: "#e2907a", color: "white" }}>
-                  {DAYS[0]}
-                </WeekDayStyle>
+                <WeekendDayStyle>{DAYS[6]}</WeekendDayStyle>
+                <WeekendDayStyle>{DAYS[0]}</WeekendDayStyle>
               </th>
             </tr>
           </thead>
@@ -110,7 +86,6 @@ class App extends React.Component {
 
   setDate(date) {
     this.setState({ chosenDate: date });
-    console.log("FUUCK");
   }
 
   render() {
@@ -128,10 +103,16 @@ class App extends React.Component {
     });
 
     return (
-      <StyledCalendarWrapper className="App">
-        {result}
-        <PhoneSubmitForm chosenDate={this.state.chosenDate} />
-      </StyledCalendarWrapper>
+      <div>
+        <TitleStyle>Бронирование даты</TitleStyle>
+        <TestTextStyle>
+          Тестовое задание на должность full-stack разработчика
+        </TestTextStyle>
+        <StyledCalendarWrapper className="App">
+          {result}
+          <PhoneSubmitForm chosenDate={this.state.chosenDate} />
+        </StyledCalendarWrapper>
+      </div>
     );
   }
 }
@@ -155,21 +136,34 @@ class PhoneSubmitForm extends React.Component {
   }
 
   submitPhone() {
-    alert(`Phone submitted - ${this.state.phone}`);
+    alert(`Успешно забронирован номер (${this.state.phone}) на выбранную дату`);
   }
 
   render() {
     return (
-      <div>
+      <StyledSubmitItems>
         <PhoneInput
-          country={"ru"}
+          onlyCountries={["ru"]}
+          localization={["ru"]}
           value={this.state.phone}
           onChange={(phone) => this.setState({ phone })}
+          disableDropdown={true}
+          placeholder="+7(___)___-__-__"
+          inputStyle={{
+            backgroundColor: "#f2f2f2",
+            width: "200px",
+            border: "1px solid grey",
+            borderRadius: "0px",
+          }}
         />
-        <button disabled={!this.isPhoneValid()} onClick={this.submitPhone}>
+        <SubmitButton
+          disabled={!this.isPhoneValid()}
+          onClick={this.submitPhone}
+          buttonStyle
+        >
           Забронировать
-        </button>
-      </div>
+        </SubmitButton>
+      </StyledSubmitItems>
     );
   }
 }
