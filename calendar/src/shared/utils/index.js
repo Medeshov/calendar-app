@@ -54,24 +54,3 @@ export const getMonthDaysForYear = (year) => {
   }
   return yearMonths;
 };
-
-// is it possible to get whole calendar
-// const year = [
-//   [
-//     [null, null, 1, 2, 3, 4, 5],
-//     [6, 7, 8, 9, 10, 11, 12],
-//     [6, 7, 8, 9, 10, 11, 12],
-//     // ...
-//     [8, 29, 30, null, null, null, null],
-//   ],
-//   [
-//     [null, null, 1, 2, 3, 4, 5],
-//     [6, 7, 8, 9, 10, 11, 12],
-//     [6, 7, 8, 9, 10, 11, 12],
-//     // ...
-//     [8, 29, 30, 31, null, null, null],
-//     [8, 29, 30, null, null, null, null],
-//   ],
-//   // ...
-//   [], // 12 items
-// ];

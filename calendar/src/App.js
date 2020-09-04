@@ -21,9 +21,7 @@ const DayButton = ({ dayDate, onDayClick, selected }) => {
   return dayDate ? (
     <StyledButton
       onClick={() => {
-        console.log(onDayClick);
         onDayClick(dayDate);
-        console.log(`Это дата –  ${dayDate}`);
       }}
       className={selected ? "selected" : ""}
     >
@@ -91,7 +89,6 @@ class App extends React.Component {
   render() {
     const yearMonths = getMonthDaysForYear(2020);
     const result = yearMonths.map((month) => {
-      console.log(month.monthDays);
       return (
         <MonthBlock
           monthName={month.monthName}
@@ -136,7 +133,9 @@ class PhoneSubmitForm extends React.Component {
   }
 
   submitPhone() {
-    alert(`Успешно забронирован номер (${this.state.phone}) на выбранную дату`);
+    alert(
+      `Успешно забронирован номер (${this.state.phone}) на дату ${this.props.chosenDate}`
+    );
   }
 
   render() {
